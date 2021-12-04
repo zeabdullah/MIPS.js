@@ -1,0 +1,7 @@
+start:
+addi $t0, $zero, 10
+andi $t1, $t0, 1
+
+j start
+
+slt $t2, $t0, $t1
