@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/AbdullahZeidan/MIPS.js/issues"
   },
-  "homepage": "https://github.com/AbdullahZeidan/MIPS.js#readme"
+  "homepage": "https://github.com/AbdullahZeidan/MIPS.js#readme",
+  "dependencies": {
+    "line-reader": "^0.4.0"
+  }
 }
