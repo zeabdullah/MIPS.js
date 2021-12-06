@@ -1,12 +1,14 @@
+import instructionFunctions from './instructionFunctions';
+
 const instructions = {
   add: {
-    instructionFunction: add
+    instructionFunction: instructionFunctions.arithmetic.add
   },
   addi: {
-    instructionFunction: add
+    instructionFunction: instructionFunctions.arithmetic.add
   },
   addu: {
-    instructionFunction: addUnsigned
+    instructionFunction: instructionFunctions.arithmetic.add
   },
   and: {},
   andi: {},
@@ -15,3 +17,7 @@ const instructions = {
   sll: {},
   srl: {}
 };
+
+export function dispatchInstruction(opcode, restOfInstruction) {
+  // TODO: implementation
+}

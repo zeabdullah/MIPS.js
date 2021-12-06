@@ -2,8 +2,15 @@ import * as lineReader from 'line-reader';
 // import { registerFile, specialRegisterFile } from './src/registerFile';
 
 // read .testfile
+let lineNum = 0;
 lineReader.eachLine('.TESTFILE', (line, last) => {
-  console.log(line);
+  const lineSeparated = line.split(' ');
+
+  const opcode = lineSeparated[0];
+  const restOfInstruction = lineSeparated.slice(1).join('');
+  dispatchInstruction(opcode, restOfInstruction);
+
+  lineNum++;
 });
 
 // e.g.: addi $t0, $s0, $s1
