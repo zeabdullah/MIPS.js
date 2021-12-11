@@ -1,17 +1,17 @@
 import * as lineReader from 'line-reader';
+import { dispatchInstruction } from './src/instructionList.js';
+import { registerFile } from './src/registerFile.js';
 // import { registerFile, specialRegisterFile } from './src/registerFile';
 
-// read .testfile
-let lineNum = 0;
-lineReader.eachLine('.TESTFILE', (line, last) => {
+if (!process.argv[2]) console.log('[ERR]: Invalid Arguments, Expected a filename');
+
+let lineNum = 1;
+lineReader.eachLine(process.argv[2], (line, last) => {
   const lineSeparated = line.split(' ');
 
   const opcode = lineSeparated[0];
-  const restOfInstruction = lineSeparated.slice(1).join('');
-  dispatchInstruction(opcode, restOfInstruction);
+  const operands = lineSeparated.slice(1).join('');
+  dispatchInstruction(opcode, operands);
 
   lineNum++;
 });
-
-// e.g.: addi $t0, $s0, $s1
-// steps: split string into the instruction (addi) and 'rest' ($t0, $s0, $s1)
