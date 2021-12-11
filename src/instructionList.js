@@ -1,7 +1,7 @@
 import Table from 'cli-table';
 import instructionFunctions from './instructionFunctions/index.js';
 import { registerFile } from './registerFile.js';
-const { arithmetic, logical } = instructionFunctions;
+const { arithmetic, logical, comparison } = instructionFunctions;
 
 const INSTRUCTIONS = {
   add: {
@@ -134,6 +134,27 @@ const INSTRUCTIONS = {
       updateAndPrintRegister(rd, result);
     },
     instructionFunction: logical.shiftRight
+  },
+  slt: {
+    interpretOperands: operandsStr => {
+      const [rd, rs, rt] = operandsStr.split(',');
+      const result = INSTRUCTIONS.slt.instructionFunction(
+        registerFile.get(rs),
+        registerFile.get(rt)
+      );
+
+      updateAndPrintRegister(rd, result);
+    },
+    instructionFunction: comparison.SetOnLessThan
+  },
+  slti: {
+    interpretOperands: operandsStr => {
+      const [rd, rs, imm] = operandsStr.split(',');
+      const result = INSTRUCTIONS.slti.instructionFunction(registerFile.get(rs), imm);
+
+      updateAndPrintRegister(rd, result);
+    },
+    instructionFunction: comparison.SetOnLessThan
   }
 };
 
