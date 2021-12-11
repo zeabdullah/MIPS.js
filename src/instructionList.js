@@ -1,3 +1,4 @@
+import Table from 'cli-table';
 import instructionFunctions from './instructionFunctions/index.js';
 import { registerFile } from './registerFile.js';
 const { arithmetic, logical } = instructionFunctions;
@@ -137,7 +138,8 @@ const INSTRUCTIONS = {
 };
 
 export function dispatchInstruction(opcode, operands) {
-  console.log(opcode, operands);
+  console.log('\n\nINSTRUCTION: %s %s', opcode, operands);
+
   INSTRUCTIONS[opcode]?.interpretOperands(operands);
 }
 
@@ -151,7 +153,15 @@ function updateAndPrintRegister(regName, newVal) {
 
   registerFile.set(regName, newVal);
 
-  // TODO: log the register change in a table format
-  console.log('REGISTER NAME: %s', regName);
-  console.log('Old Value: %d \nNew Value: %d', oldVal, newVal);
+  // instantiate
+  const table = new Table({
+    head: ['Reg Name', 'Old Value', 'New Value'],
+    colWidths: [11, 22, 22]
+  });
+
+  // add table row
+  table.push([regName, oldVal, newVal]);
+
+  // print table
+  console.log(table.toString());
 }
