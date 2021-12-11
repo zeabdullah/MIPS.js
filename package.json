@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/AbdullahZeidan/MIPS.js#readme",
   "dependencies": {
+    "cli-table": "^0.3.11",
     "line-reader": "^0.4.0"
   },
   "devDependencies": {
