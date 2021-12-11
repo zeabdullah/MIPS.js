@@ -5,4 +5,8 @@ extends: eslint:recommended
 parserOptions:
   ecmaVersion: 13
   sourceType: module
-rules: {}
+rules:
+  {
+    'no-unused-vars':
+      ['warn', { 'vars': 'all', 'args': 'after-used', 'ignoreRestSiblings': false }]
+  }
