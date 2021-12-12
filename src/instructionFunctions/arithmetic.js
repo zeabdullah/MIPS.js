@@ -12,6 +12,10 @@ export function mult(val1, val2) {
   return val1 * val2;
 }
 
-export function divide(val1, val2) {
-  return [val1 % val2, val1 / val2];
+export function div(val1, val2) {
+  // [remainder (hi), quotient (lo)]
+  const remainder = val1 % val2;
+  const quotient = Math.floor(val1 / val2);
+
+  return [remainder, quotient];
 }

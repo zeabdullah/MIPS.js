@@ -1,7 +1,7 @@
 import Table from 'cli-table';
 import instructionFunctions from './instructionFunctions/index.js';
-import { registerFile } from './registerFile.js';
-const { arithmetic, logical, comparison } = instructionFunctions;
+import { registerFile, specialRegisterFile } from './registerFile.js';
+const { arithmetic, logical, comparison, dataTransfer } = instructionFunctions;
 
 const INSTRUCTIONS = {
   add: {
@@ -75,6 +75,50 @@ const INSTRUCTIONS = {
     },
     instructionFunction: arithmetic.sub
   },
+
+  mult: {
+    interpretOperands: operandsStr => {
+      // const [rs, rt] = operandsStr.split(',');
+      // const result = INSTRUCTIONS.mult.instructionFunction(
+      //   registerFile.get(rs),
+      //   registerFile.get(rt)
+      // );
+      // updateAndPrintRegister(rd, result);
+    },
+    instructionFunction: arithmetic.mult
+  },
+  div: {
+    interpretOperands: operandsStr => {
+      const [rs, rt] = operandsStr.split(',');
+      const [remainder, quotient] = INSTRUCTIONS.div.instructionFunction(
+        registerFile.get(rs),
+        registerFile.get(rt)
+      );
+
+      updateAndPrintRegisters({ hi: remainder, lo: quotient });
+    },
+    instructionFunction: arithmetic.div
+  },
+
+  mfhi: {
+    interpretOperands: operandsStr => {
+      const rd = operandsStr;
+      const result = INSTRUCTIONS.mfhi.instructionFunction();
+
+      updateAndPrintRegister(rd, result);
+    },
+    instructionFunction: dataTransfer.mfhi
+  },
+  mflo: {
+    interpretOperands: operandsStr => {
+      const rd = operandsStr;
+      const result = INSTRUCTIONS.mflo.instructionFunction();
+
+      updateAndPrintRegister(rd, result);
+    },
+    instructionFunction: dataTransfer.mflo
+  },
+
   and: {
     interpretOperands: operandsStr => {
       const [rd, rs, rt] = operandsStr.split(',');
@@ -182,6 +226,24 @@ function updateAndPrintRegister(regName, newVal) {
 
   // add table row
   table.push([regName, oldVal, newVal]);
+  // print table
+  console.log(table.toString());
+}
+
+function updateAndPrintRegisters(regList) {
+  const table = new Table({
+    head: ['Reg Name', 'Old Value', 'New Value'],
+    colWidths: [11, 22, 22]
+  });
+
+  for (let regName in regList) {
+    const oldVal = specialRegisterFile.get(regName);
+
+    specialRegisterFile.set(regName, regList[regName]);
+
+    // add table row
+    table.push([regName, oldVal, regList[regName]]);
+  }
 
   // print table
   console.log(table.toString());
