@@ -1,33 +1,20 @@
-start:
-addi $t0, $zero, 10
-add $t1, $zero, $t0
-addu $t1, $zero, $t1
-addiu $t2,$t1,100
+# List of instructions that are working (at least on a basic level)
 
-sub $t0, $zero, $t1
-subu $t0, $zero, $t1
+addi $t0, $zero, 15
+addi $t1, $t0, 20
+sub $t2, $t1, $t0
 
-and $t5,$t0,$t1
-andi $t6,$t3,15
-or $t7,$t3,$t4
-ori $a0,$t3,22
+div $t1, $t0
+mfhi $t6
+mflo $t7
 
-sll $1,$2,10
-srl $1,$2,10
-
-j label
-jr $1
-jal label
-
-slt $t2, $t0, $t1
-slti $t2, $t0, $t1
-
-lw $1, 100($2)
-sw $1, 100($2)
-lui $1, 100 
-
-beq $1, $2, 100
-bne $1, $2, 100
-
-mult $2,$3
-div $2,$3
+# and $t3, $t2, $t1
+# or $t4, $t2, $t1
+# andi $t5, $t2, 120
+# ori $t6, $t2, 64
+# 
+# sll $t7, $t6, 2
+# srl $s0, $t6, 2
+# 
+# slti $s1, $t0, 16
+# slt $s2, $zero, $t1
