@@ -22,4 +22,5 @@ where `<filename>` is the name of the file containing your MIPS assembly code
 
 
 **Note: `<filename>` can be whatever extension, the application doesn't care.**
-**Note #2: try it out on .TESTFILE**
+
+**Note #2: try it out on `.TESTFILE`**
