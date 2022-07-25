@@ -1,5 +1,5 @@
 # MIPS.js
-Terminal-based emulator MIPS instruction set written in JavaScript
+Terminal-based MIPS instruction set emulator written in JavaScript
 
 
 ## Requirements
