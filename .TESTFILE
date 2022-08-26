@@ -8,6 +8,7 @@ div $t1, $t0
 mfhi $t6
 mflo $t7
 
+# UNSUPPORTED YET
 # and $t3, $t2, $t1
 # or $t4, $t2, $t1
 # andi $t5, $t2, 120
